@@ -45,6 +45,10 @@ services:
       - ./softprompts:/home/app/text-generation-webui/softprompts
       - ./training:/home/app/text-generation-webui/training
       - ./cloudflared:/etc/cloudflared
+    command:
+      - /bin/bash
+      - "-c"
+      - "umask 0002 && export HOME=/home/app/text-generation-webui && ./start_linux.sh --listen --listen-host 0.0.0.0"
     deploy:
       resources:
         reservations:
